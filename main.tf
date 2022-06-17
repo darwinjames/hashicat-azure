@@ -28,6 +28,13 @@ resource "azurerm_virtual_network" "vnet" {
   location            = azurerm_resource_group.myresourcegroup.location
   address_space       = [var.address_space]
   resource_group_name = azurerm_resource_group.myresourcegroup.name
+  
+  tags = {
+    environment = "Production"
+    costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+  }
 }
 
 resource "azurerm_subnet" "subnet" {
@@ -35,6 +42,13 @@ resource "azurerm_subnet" "subnet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   resource_group_name  = azurerm_resource_group.myresourcegroup.name
   address_prefixes     = [var.subnet_prefix]
+  
+  tags = {
+    environment = "Production"
+    costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+  }
 }
 
 resource "azurerm_network_security_group" "catapp-sg" {
@@ -52,6 +66,13 @@ resource "azurerm_network_security_group" "catapp-sg" {
     destination_port_range     = "80"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
+    
+    tags = {
+    environment = "Production"
+    costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+  }
   }
 
   security_rule {
@@ -90,11 +111,25 @@ resource "azurerm_network_interface" "catapp-nic" {
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.catapp-pip.id
   }
+  
+  tags = {
+    environment = "Production"
+    costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+  }
 }
 
 resource "azurerm_network_interface_security_group_association" "catapp-nic-sg-ass" {
   network_interface_id      = azurerm_network_interface.catapp-nic.id
   network_security_group_id = azurerm_network_security_group.catapp-sg.id
+  
+  tags = {
+    environment = "Production"
+    costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+  }
 }
 
 resource "azurerm_public_ip" "catapp-pip" {
@@ -103,6 +138,13 @@ resource "azurerm_public_ip" "catapp-pip" {
   resource_group_name = azurerm_resource_group.myresourcegroup.name
   allocation_method   = "Dynamic"
   domain_name_label   = "${var.prefix}-meow"
+  
+  tags = {
+    environment = "Production"
+    costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+  }
 }
 
 resource "azurerm_virtual_machine" "catapp" {
@@ -138,7 +180,12 @@ resource "azurerm_virtual_machine" "catapp" {
     disable_password_authentication = false
   }
 
-  tags = {}
+  tags = {
+    environment = "Production"
+    costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+  }
 
   # Added to allow destroy to work correctly.
   depends_on = [azurerm_network_interface_security_group_association.catapp-nic-sg-ass]
@@ -157,6 +204,12 @@ resource "azurerm_virtual_machine" "catapp" {
 # Add execute permissions to our scripts.
 # Run the deploy_app.sh script.
 resource "null_resource" "configure-cat-app" {
+  tags = {
+    environment = "Production"
+    costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+  }
   depends_on = [
     azurerm_virtual_machine.catapp,
   ]
