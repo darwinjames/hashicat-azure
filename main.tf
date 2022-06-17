@@ -52,6 +52,14 @@ resource "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_network_security_group" "catapp-sg" {
+  
+  tags = {
+    environment = "Production"
+    costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+  }
+  
   name                = "${var.prefix}-sg"
   location            = var.location
   resource_group_name = azurerm_resource_group.myresourcegroup.name
@@ -67,12 +75,7 @@ resource "azurerm_network_security_group" "catapp-sg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
     
-    tags = {
-    environment = "Production"
-    costcenter  = "it"
-    billable  = "no"
-    department  = "it"
-  }
+    
   }
 
   security_rule {
