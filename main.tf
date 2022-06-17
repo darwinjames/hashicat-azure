@@ -121,12 +121,7 @@ resource "azurerm_network_interface_security_group_association" "catapp-nic-sg-a
   network_interface_id      = azurerm_network_interface.catapp-nic.id
   network_security_group_id = azurerm_network_security_group.catapp-sg.id
   
-  tags = {
-    environment = "Production"
-    costcenter  = "it"
-    billable  = "no"
-    department  = "it"
-  }
+  
 }
 
 resource "azurerm_public_ip" "catapp-pip" {
