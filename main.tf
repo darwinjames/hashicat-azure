@@ -18,8 +18,8 @@ resource "azurerm_resource_group" "myresourcegroup" {
   tags = {
     environment = "Production"
     costcenter  = "it"
-    billable  = "no"
-    department  = "it"
+    Billable  = "no"
+    Department  = "it"
   }
 }
 
@@ -32,8 +32,8 @@ resource "azurerm_virtual_network" "vnet" {
   tags = {
     environment = "Production"
     costcenter  = "it"
-    billable  = "no"
-    department  = "it"
+    Billable  = "no"
+    Department  = "it"
   }
 }
 
@@ -50,8 +50,8 @@ resource "azurerm_network_security_group" "catapp-sg" {
   tags = {
     environment = "Production"
     costcenter  = "it"
-    billable  = "no"
-    department  = "it"
+    Billable  = "no"
+    Department  = "it"
   }
   
   name                = "${var.prefix}-sg"
@@ -112,8 +112,8 @@ resource "azurerm_network_interface" "catapp-nic" {
   tags = {
     environment = "Production"
     costcenter  = "it"
-    billable  = "no"
-    department  = "it"
+    Billable  = "no"
+    Department  = "it"
   }
 }
 
@@ -134,8 +134,8 @@ resource "azurerm_public_ip" "catapp-pip" {
   tags = {
     environment = "Production"
     costcenter  = "it"
-    billable  = "no"
-    department  = "it"
+    Billable  = "no"
+    Department  = "it"
   }
 }
 
@@ -175,8 +175,8 @@ resource "azurerm_virtual_machine" "catapp" {
   tags = {
     environment = "Production"
     costcenter  = "it"
-    billable  = "no"
-    department  = "it"
+    Billable  = "no"
+    Department  = "it"
   }
 
   # Added to allow destroy to work correctly.
