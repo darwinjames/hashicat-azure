@@ -196,12 +196,7 @@ resource "azurerm_virtual_machine" "catapp" {
 # Add execute permissions to our scripts.
 # Run the deploy_app.sh script.
 resource "null_resource" "configure-cat-app" {
-  tags = {
-    environment = "Production"
-    costcenter  = "it"
-    billable  = "no"
-    department  = "it"
-  }
+  
   depends_on = [
     azurerm_virtual_machine.catapp,
   ]
