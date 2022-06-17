@@ -19,6 +19,9 @@ module "network" {
   tags = {
     environment = "dev"
     costcenter  = "it"
+    billable  = "no"
+    department  = "it"
+    
   }
 
   depends_on = [azurerm_resource_group.example]
